@@ -1,0 +1,18 @@
+services:
+  timestamps:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GOVERSION: 1.18
+        BINDADDR: 0.0.0.0
+        BINDPORT: 8080
+    restart: "no"
+    entrypoint: "/timestamps -a 0.0.0.0 -p 8080"
+    networks:
+      - timestamps-svc-network
+    ports:
+      - "8080:8080"
+
+networks:
+  timestamps-svc-network:
